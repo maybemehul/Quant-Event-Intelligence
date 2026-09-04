@@ -3,6 +3,9 @@ import sqlite3
 import requests
 import json
 from dotenv import load_dotenv
+import sys
+sys.path.append("src")
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
