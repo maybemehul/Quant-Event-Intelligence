@@ -79,14 +79,14 @@ function App() {
   >({})
 
   useEffect(() => {
-    fetch("http://localhost:8000/health")
+    fetch("https://smart-market-watch.onrender.com/health")
       .then((response) => response.json())
       .then((data) => setBackendStatus(data.status))
       .catch(() => setBackendStatus("Offline"))
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost:8000/watchlist")
+    fetch("https://smart-market-watch.onrender.com/watchlist")
       .then((response) => response.json())
       .then((data) => {
         setStocks(data)
@@ -104,7 +104,7 @@ function App() {
     const checkWatchlist = async () => {
       try {
         const lastCheckedResponse = await fetch(
-          "http://localhost:8000/last-checked"
+          "https://smart-market-watch.onrender.com/last-checked"
         )
 
         const lastCheckedData =
@@ -115,7 +115,7 @@ function App() {
         for (const stock of stocks) {
           try {
             const response = await fetch(
-              `http://localhost:8000/check/${stock.symbol}`,
+              `https://smart-market-watch.onrender.com/check/${stock.symbol}`,
               {
                 method: "POST",
               }
@@ -148,6 +148,7 @@ function App() {
               [stock.symbol]: {
                 ...data,
                 symbol: stock.symbol,
+                
               },
             }))
           } catch (error) {
@@ -165,7 +166,7 @@ function App() {
         }
 
         await fetch(
-          "http://localhost:8000/last-checked",
+          "https://smart-market-watch.onrender.com/last-checked",
           {
             method: "POST",
           }
@@ -186,7 +187,7 @@ function App() {
 
       try {
         const response = await fetch(
-          `http://localhost:8000/history/${chartSymbol}`
+          `https://smart-market-watch.onrender.com/history/${chartSymbol}`
         )
 
         if (!response.ok) {
@@ -281,7 +282,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/watchlist",
+        "https://smart-market-watch.onrender.com/watchlist",
         {
           method: "POST",
           headers: {
@@ -313,7 +314,7 @@ function App() {
     symbol: string
   ) => {
     const response = await fetch(
-      `http://localhost:8000/watchlist/${symbol}`,
+      `https://smart-market-watch.onrender.com/watchlist/${symbol}`,
       {
         method: "DELETE",
       }
@@ -360,7 +361,7 @@ function App() {
 
   try {
     const response = await fetch(
-      `http://localhost:8000/ai-insight/${symbol}`,
+      `https://smart-market-watch.onrender.com/ai-insight/${symbol}`,
       {
         method: "POST",
       }
